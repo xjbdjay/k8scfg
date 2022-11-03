@@ -1,0 +1,146 @@
+apiVersion: apps.foundationdb.org/v1beta2
+kind: FoundationDBCluster
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps.foundationdb.org/v1beta2","kind":"FoundationDBCluster","metadata":{"annotations":{},"name":"test-cluster","namespace":"default"},"spec":{"automationOptions":{"replacements":{"enabled":true}},"faultDomain":{"key":"foundationdb.org/none"},"labels":{"filterOnOwnerReference":false,"matchLabels":{"foundationdb.org/fdb-cluster-name":"test-cluster"},"processClassLabels":["foundationdb.org/fdb-process-class"],"processGroupIDLabels":["foundationdb.org/fdb-process-group-id"]},"minimumUptimeSecondsForBounce":60,"processCounts":{"cluster_controller":1,"stateless":-1},"processes":{"general":{"customParameters":["knob_disable_posix_kernel_aio=1"],"podTemplate":{"spec":{"containers":[{"name":"foundationdb","resources":{"requests":{"cpu":"100m","memory":"128Mi"}},"securityContext":{"runAsUser":0}},{"name":"foundationdb-kubernetes-sidecar","resources":{"limits":{"cpu":"100m","memory":"128Mi"},"requests":{"cpu":"100m","memory":"128Mi"}},"securityContext":{"runAsUser":0}}],"initContainers":[{"name":"foundationdb-kubernetes-init","resources":{"limits":{"cpu":"100m","memory":"128Mi"},"requests":{"cpu":"100m","memory":"128Mi"}},"securityContext":{"runAsUser":0}}]}},"volumeClaimTemplate":{"spec":{"resources":{"requests":{"storage":"16G"}}}}}},"routing":{"headlessService":true},"sidecarContainer":{"enableLivenessProbe":true,"enableReadinessProbe":false},"useExplicitListenAddress":true,"version":"6.3.22"}}
+  creationTimestamp: "2022-08-29T07:30:36Z"
+  generation: 1
+  name: test-cluster
+  namespace: default
+  resourceVersion: "391692"
+  uid: 203852d9-b0fc-45eb-9ff8-e07373ed1184
+spec:
+  automationOptions:
+    deletionMode: Zone
+    podUpdateStrategy: ReplaceTransactionSystem
+    removalMode: Zone
+    replacements:
+      enabled: true
+      maxConcurrentReplacements: 1
+  faultDomain:
+    key: foundationdb.org/none
+  labels:
+    filterOnOwnerReference: false
+    matchLabels:
+      foundationdb.org/fdb-cluster-name: test-cluster
+    processClassLabels:
+    - foundationdb.org/fdb-process-class
+    processGroupIDLabels:
+    - foundationdb.org/fdb-process-group-id
+  minimumUptimeSecondsForBounce: 60
+  processCounts:
+    cluster_controller: 1
+    stateless: -1
+  processes:
+    general:
+      customParameters:
+      - knob_disable_posix_kernel_aio=1
+      podTemplate:
+        spec:
+          containers:
+          - name: foundationdb
+            resources:
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            securityContext:
+              runAsUser: 0
+          - name: foundationdb-kubernetes-sidecar
+            resources:
+              limits:
+                cpu: 100m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            securityContext:
+              runAsUser: 0
+          initContainers:
+          - name: foundationdb-kubernetes-init
+            resources:
+              limits:
+                cpu: 100m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            securityContext:
+              runAsUser: 0
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 16G
+  replaceInstancesWhenResourcesChange: false
+  routing:
+    headlessService: true
+  sidecarContainer:
+    enableLivenessProbe: true
+    enableReadinessProbe: false
+  skip: false
+  useExplicitListenAddress: true
+  version: 6.3.22
+status:
+  configured: true
+  connectionString: test_cluster:KuaNzVXU20mRHuvky0cbHzp8ydBxoFHq@10.1.1.129:4501,10.1.1.132:4501,10.1.1.135:4501
+  databaseConfiguration:
+    log_routers: -1
+    logs: 3
+    proxies: 3
+    redundancy_mode: double
+    remote_logs: -1
+    resolvers: 1
+    storage_engine: ssd-2
+    usable_regions: 1
+  generations:
+    hasUnhealthyProcess: 1
+  hasListenIPsForAllPods: true
+  health:
+    available: true
+    fullReplication: true
+    healthy: true
+  imageTypes:
+  - split
+  locks: {}
+  processGroups:
+  - addresses:
+    - 10.1.1.130
+    processClass: cluster_controller
+    processGroupID: cluster_controller-1
+  - addresses:
+    - 10.1.1.129
+    processClass: log
+    processGroupID: log-1
+  - addresses:
+    - 10.1.1.132
+    processClass: log
+    processGroupID: log-2
+  - addresses:
+    - 10.1.1.135
+    processClass: log
+    processGroupID: log-3
+  - addresses:
+    - 10.1.1.136
+    processClass: log
+    processGroupID: log-4
+  - addresses:
+    - 10.1.1.133
+    processClass: storage
+    processGroupConditions:
+    - timestamp: 1661762511
+      type: MissingProcesses
+    processGroupID: storage-1
+  - addresses:
+    - 10.1.1.134
+    processClass: storage
+    processGroupID: storage-2
+  - addresses:
+    - 10.1.1.131
+    processClass: storage
+    processGroupID: storage-3
+  requiredAddresses:
+    nonTLS: true
+  runningVersion: 6.3.22
+  storageServersPerDisk:
+  - 1

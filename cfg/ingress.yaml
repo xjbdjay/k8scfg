@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx # 这一步需要指定ingressClassName，不然信息无法同步到nginx配置中，也会报 ingress does not contain a valid Ingress Class  错误
+  rules:
+  - http:
+      paths:
+      - path: /test/*
+        pathType: Prefix
+        backend:
+          service:
+            name: productpage
+            port:
+              number: 9080

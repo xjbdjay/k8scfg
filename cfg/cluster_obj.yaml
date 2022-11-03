@@ -1,0 +1,322 @@
+apiVersion: v1
+items:
+- apiVersion: apps.foundationdb.org/v1beta2
+  kind: FoundationDBCluster
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps.foundationdb.org/v1beta2","kind":"FoundationDBCluster","metadata":{"annotations":{},"name":"test-cluster","namespace":"default"},"spec":{"automationOptions":{"replacements":{"enabled":true}},"faultDomain":{"key":"foundationdb.org/none"},"labels":{"filterOnOwnerReference":false,"matchLabels":{"foundationdb.org/fdb-cluster-name":"test-cluster"},"processClassLabels":["foundationdb.org/fdb-process-class"],"processGroupIDLabels":["foundationdb.org/fdb-process-group-id"]},"minimumUptimeSecondsForBounce":60,"processCounts":{"cluster_controller":1,"commit_proxy":1,"grv_proxy":1,"log":4,"proxy":3,"stateless":-1,"storage":3},"processes":{"general":{"customParameters":["knob_disable_posix_kernel_aio=1"],"podTemplate":{"spec":{"containers":[{"name":"foundationdb","resources":{"requests":{"cpu":"100m","memory":"128Mi"}},"securityContext":{"runAsUser":0}},{"name":"foundationdb-kubernetes-sidecar","resources":{"limits":{"cpu":"100m","memory":"128Mi"},"requests":{"cpu":"100m","memory":"128Mi"}},"securityContext":{"runAsUser":0}}],"initContainers":[{"name":"foundationdb-kubernetes-init","resources":{"limits":{"cpu":"100m","memory":"128Mi"},"requests":{"cpu":"100m","memory":"128Mi"}},"securityContext":{"runAsUser":0}}]}},"volumeClaimTemplate":{"spec":{"resources":{"requests":{"storage":"16G"}}}}}},"routing":{"headlessService":true},"sidecarContainer":{"enableLivenessProbe":true,"enableReadinessProbe":false},"useExplicitListenAddress":true,"version":"7.1.19"}}
+    creationTimestamp: "2022-09-01T06:44:08Z"
+    generation: 3
+    name: test-cluster
+    namespace: default
+    resourceVersion: "819388"
+    uid: dd21b8b7-46e8-4041-b3dc-7e1d74647d49
+  spec:
+    automationOptions:
+      deletionMode: Zone
+      podUpdateStrategy: ReplaceTransactionSystem
+      removalMode: Zone
+      replacements:
+        enabled: true
+        maxConcurrentReplacements: 1
+    faultDomain:
+      key: foundationdb.org/none
+    labels:
+      filterOnOwnerReference: false
+      matchLabels:
+        foundationdb.org/fdb-cluster-name: test-cluster
+      processClassLabels:
+      - foundationdb.org/fdb-process-class
+      processGroupIDLabels:
+      - foundationdb.org/fdb-process-group-id
+    minimumUptimeSecondsForBounce: 60
+    processCounts:
+      cluster_controller: 1
+      commit_proxy: 1
+      grv_proxy: 1
+      log: 4
+      proxy: 3
+      stateless: -1
+      storage: 3
+    processes:
+      general:
+        customParameters:
+        - knob_disable_posix_kernel_aio=1
+        podTemplate:
+          spec:
+            containers:
+            - name: foundationdb
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 128Mi
+              securityContext:
+                runAsUser: 0
+            - name: foundationdb-kubernetes-sidecar
+              resources:
+                limits:
+                  cpu: 100m
+                  memory: 128Mi
+                requests:
+                  cpu: 100m
+                  memory: 128Mi
+              securityContext:
+                runAsUser: 0
+            initContainers:
+            - name: foundationdb-kubernetes-init
+              resources:
+                limits:
+                  cpu: 100m
+                  memory: 128Mi
+                requests:
+                  cpu: 100m
+                  memory: 128Mi
+              securityContext:
+                runAsUser: 0
+        volumeClaimTemplate:
+          spec:
+            resources:
+              requests:
+                storage: 16G
+    replaceInstancesWhenResourcesChange: false
+    routing:
+      headlessService: true
+    sidecarContainer:
+      enableLivenessProbe: true
+      enableReadinessProbe: false
+    skip: false
+    useExplicitListenAddress: true
+    version: 7.1.19
+  status:
+    configured: true
+    connectionString: test_cluster:EXhjvAkarTqeoEOwBd35uPY66MhJzy3V@10.1.2.76:4501,10.1.2.81:4501,10.1.2.82:4501
+    databaseConfiguration:
+      log_routers: -1
+      redundancy_mode: double
+      remote_logs: -1
+      storage_engine: ssd-2
+      usable_regions: 1
+    generations:
+      hasPendingRemoval: 3
+      hasUnhealthyProcess: 3
+      missingDatabaseStatus: 3
+      needsConfigurationChange: 3
+      needsCoordinatorChange: 3
+      needsShrink: 3
+      reconciled: 2
+    hasListenIPsForAllPods: true
+    health: {}
+    imageTypes:
+    - split
+    locks: {}
+    needsNewCoordinators: true
+    processGroups:
+    - addresses:
+      - 10.1.2.75
+      processClass: cluster_controller
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: cluster_controller-1
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - processClass: cluster_controller
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      - timestamp: 1662016347
+        type: PodPending
+      processGroupID: cluster_controller-2
+    - addresses:
+      - 10.1.2.84
+      processClass: commit_proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: commit_proxy-1
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - processClass: commit_proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      - timestamp: 1662016347
+        type: PodPending
+      processGroupID: commit_proxy-2
+    - exclusionTimestamp: "2022-09-01T07:12:20Z"
+      processClass: grv_proxy
+      processGroupConditions:
+      - timestamp: 1662016341
+        type: ResourcesTerminating
+      processGroupID: grv_proxy-1
+      removalTimestamp: "2022-09-01T07:12:13Z"
+    - processClass: grv_proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      - timestamp: 1662016347
+        type: PodPending
+      processGroupID: grv_proxy-2
+    - addresses:
+      - 10.1.2.77
+      processClass: log
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: log-1
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - addresses:
+      - 10.1.2.80
+      processClass: log
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: log-2
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - addresses:
+      - 10.1.2.78
+      processClass: log
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: log-3
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - addresses:
+      - 10.1.2.79
+      processClass: log
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: log-4
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - processClass: log
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      - timestamp: 1662016347
+        type: PodPending
+      processGroupID: log-5
+    - processClass: log
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      - timestamp: 1662016347
+        type: PodPending
+      processGroupID: log-6
+    - processClass: log
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      - timestamp: 1662016347
+        type: PodPending
+      processGroupID: log-7
+    - processClass: log
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      - timestamp: 1662016347
+        type: PodPending
+      processGroupID: log-8
+    - addresses:
+      - 10.1.2.85
+      processClass: proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: proxy-1
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - addresses:
+      - 10.1.2.83
+      processClass: proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: proxy-2
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - addresses:
+      - 10.1.2.86
+      processClass: proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: IncorrectPodSpec
+      - timestamp: 1662016333
+        type: IncorrectConfigMap
+      processGroupID: proxy-3
+      removalTimestamp: "2022-09-01T07:16:34Z"
+    - addresses:
+      - 10.1.2.87
+      processClass: proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      processGroupID: proxy-4
+    - addresses:
+      - 10.1.2.89
+      processClass: proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      processGroupID: proxy-5
+    - addresses:
+      - 10.1.2.88
+      processClass: proxy
+      processGroupConditions:
+      - timestamp: 1662016333
+        type: MissingProcesses
+      processGroupID: proxy-6
+    - addresses:
+      - 10.1.2.76
+      processClass: storage
+      processGroupConditions:
+      - timestamp: 1662016336
+        type: SidecarUnreachable
+      - timestamp: 1662016487
+        type: MissingProcesses
+      - timestamp: 1662016487
+        type: PodPending
+      processGroupID: storage-1
+    - addresses:
+      - 10.1.2.82
+      processClass: storage
+      processGroupConditions:
+      - timestamp: 1662016338
+        type: SidecarUnreachable
+      - timestamp: 1662016487
+        type: MissingProcesses
+      - timestamp: 1662016487
+        type: PodPending
+      processGroupID: storage-2
+    - addresses:
+      - 10.1.2.81
+      processClass: storage
+      processGroupConditions:
+      - timestamp: 1662016340
+        type: SidecarUnreachable
+      - timestamp: 1662016487
+        type: MissingProcesses
+      - timestamp: 1662016487
+        type: PodPending
+      processGroupID: storage-3
+    requiredAddresses:
+      nonTLS: true
+    runningVersion: 7.1.19
+    storageServersPerDisk:
+    - 1
+kind: List
+metadata:
+  resourceVersion: ""

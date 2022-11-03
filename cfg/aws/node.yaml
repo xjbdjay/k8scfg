@@ -1,0 +1,14 @@
+- AutoScalingGroupName: ""
+  Cluster: test-fdb-cluster
+  CreationTime: "2022-10-13T06:31:02.047Z"
+  DesiredCapacity: 4
+  ImageID: AL2_x86_64
+  InstanceType: t3.medium
+  MaxSize: 4
+  MinSize: 4
+  Name: tree
+  NodeInstanceRoleARN: arn:aws-cn:iam::635304352795:role/eksctl-eks-dev-nodegroup-ng-86a94-NodeInstanceRole-11MFJSMWR79JE
+  StackName: ""
+  Status: CREATING
+  Type: managed
+  Version: "1.23"

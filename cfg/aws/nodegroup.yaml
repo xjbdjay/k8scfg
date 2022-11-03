@@ -1,0 +1,18 @@
+# A simple example of ClusterConfig object with two nodegroups:
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: test-fdb-cluster
+  region: cn-north-1
+
+nodeGroups:
+  - name: new-subnet-nodegroup
+    instanceType: t3.medium
+    desiredCapacity: 2
+    subnets:
+      - "subnet-0cfd82c458a5356b1"
+      - "subnet-0ffd34740540d179a"
+      - "subnet-0a537ae55d8a04d93"
+      - "subnet-03eb9c66f298c3bc4"

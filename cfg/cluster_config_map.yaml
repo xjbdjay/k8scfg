@@ -1,0 +1,73 @@
+apiVersion: v1
+data:
+  cluster-file: test_cluster:Y6jfivj3arAXph7gRSBprvetNpYaBz4Z@10.1.1.176:4501,10.1.1.179:4501,10.1.1.180:4501
+  fdbmonitor-conf-cluster_controller: |-
+    [general]
+    kill_on_configuration_change = false
+    restart_delay = 60
+    [fdbserver.1]
+    command = $BINARY_DIR/fdbserver
+    cluster_file = /var/fdb/data/fdb.cluster
+    seed_cluster_file = /var/dynamic-conf/fdb.cluster
+    public_address = $FDB_PUBLIC_IP:4501
+    class = cluster_controller
+    logdir = /var/log/fdb-trace-logs
+    loggroup = test-cluster
+    datadir = /var/fdb/data
+    locality_instance_id = $FDB_INSTANCE_ID
+    locality_machineid = $FDB_MACHINE_ID
+    locality_zoneid = $FDB_ZONE_ID
+    listen_address = $FDB_POD_IP:4501
+    knob_disable_posix_kernel_aio = 1
+  fdbmonitor-conf-log: |-
+    [general]
+    kill_on_configuration_change = false
+    restart_delay = 60
+    [fdbserver.1]
+    command = $BINARY_DIR/fdbserver
+    cluster_file = /var/fdb/data/fdb.cluster
+    seed_cluster_file = /var/dynamic-conf/fdb.cluster
+    public_address = $FDB_PUBLIC_IP:4501
+    class = log
+    logdir = /var/log/fdb-trace-logs
+    loggroup = test-cluster
+    datadir = /var/fdb/data
+    locality_instance_id = $FDB_INSTANCE_ID
+    locality_machineid = $FDB_MACHINE_ID
+    locality_zoneid = $FDB_ZONE_ID
+    listen_address = $FDB_POD_IP:4501
+    knob_disable_posix_kernel_aio = 1
+  fdbmonitor-conf-storage: |-
+    [general]
+    kill_on_configuration_change = false
+    restart_delay = 60
+    [fdbserver.1]
+    command = $BINARY_DIR/fdbserver
+    cluster_file = /var/fdb/data/fdb.cluster
+    seed_cluster_file = /var/dynamic-conf/fdb.cluster
+    public_address = $FDB_PUBLIC_IP:4501
+    class = storage
+    logdir = /var/log/fdb-trace-logs
+    loggroup = test-cluster
+    datadir = /var/fdb/data
+    locality_instance_id = $FDB_INSTANCE_ID
+    locality_machineid = $FDB_MACHINE_ID
+    locality_zoneid = $FDB_ZONE_ID
+    listen_address = $FDB_POD_IP:4501
+    knob_disable_posix_kernel_aio = 1
+  running-version: 7.1.19
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2022-08-30T06:37:22Z"
+  labels:
+    foundationdb.org/fdb-cluster-name: test-cluster
+  name: test-cluster-config
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps.foundationdb.org/v1beta2
+    controller: true
+    kind: FoundationDBCluster
+    name: test-cluster
+    uid: e512e8e2-6654-4098-a88e-3ffb88cbad3d
+  resourceVersion: "606511"
+  uid: 39ceaec7-b1be-4c3a-ab18-974c5d68f345

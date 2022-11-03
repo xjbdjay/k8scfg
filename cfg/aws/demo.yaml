@@ -1,0 +1,23 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: demo
+  region: cn-north-1
+
+vpc:
+  id: "vpc-00ae5d1affad43291"
+  cidr: "10.2.0.0/16"
+  subnets:
+    private:
+      cn-north-1a:
+        id: "subnet-00f98e0b15da6e5de"
+        cidr: "10.2.32.0/19"
+      cn-north-1b:
+        id: "subnet-0edfa14acbe065ba0"
+        cidr: "10.2.64.0/19"
+
+nodeGroups:
+  - name: eks-nodegroup
+    instanceType: t3.medium
+    desiredCapacity: 2
