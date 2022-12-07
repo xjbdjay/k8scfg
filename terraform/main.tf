@@ -23,13 +23,11 @@ provider "aws" {
   region  = "cn-north-1"
 }
 
+resource "aws_instance" "app_server" {
+  ami           = "ami-0ddcc204358e015fa"
+  instance_type = "t2.micro"
 
-
-# resource "aws_instance" "app_server" {
-#   ami           = "ami-0ddcc204358e015fa"
-#   instance_type = "t2.micro"
-
-#   tags = {
-#     Name = "ExampleAppServerInstance"
-#   }
-# }
+  tags = {
+    Name = "ExampleAppServerInstance"
+  }
+}
